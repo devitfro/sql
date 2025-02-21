@@ -1,5 +1,6 @@
 CREATE DATABASE Library
 USE Library
+
 CREATE TABLE Themes (
 	id int PRIMARY KEY identity(1, 1),
 	name nvarchar(50) UNIQUE)
