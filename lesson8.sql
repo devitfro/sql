@@ -92,3 +92,32 @@ END
 SELECT * FROM Results2
 
 
+-- сгенерировать случайный символ
+DECLARE @num2 float = RAND() * 255
+--SELECT @num2 = RAND()
+--SET @num2 = @num2 * 255
+PRINT CHAR(@num2) -- ASCII table
+PRINT UNICODE(@num2) -- UNICODE
+
+
+-- CURSOR
+DECLARE c1 CURSOR FOR SELECT name FROM Product
+OPEN c1
+DECLARE @str nvarchar(50)
+FETCH NEXT FROM c1 INTO @str
+WHILE @@FETCH_STATUS = 0
+BEGIN
+	RAISERROR('%s', 0, 1, @str) WITH NOWAIT
+	WAITFOR DELAY '0:00:01'
+	IF @STR = 'Sony Smartwatch 4'
+	BEGIN
+		PRINT 'BINGO!'
+		BREAK
+	END
+	FETCH NEXT FROM c1 INTO @str
+END
+CLOSE c1
+DEALLOCATE c1
+
+
+
